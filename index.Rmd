@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+title: "Introducción a RNA-Seq LCG-2021 | Proyecto Final"
+author: "Elizabeth Márquez Gómez"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
