@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introducción a RNA-Seq LCG-2021 | Proyecto Final</title>
-  <meta name="description" content="Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  <title>Chapter 3 Formateo de datos | Introducción a RNA-Seq LCG-2021 | Proyecto Final</title>
+  <meta name="description" content="Chapter 3 Formateo de datos | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  <meta property="og:title" content="Chapter 3 Formateo de datos | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  <meta name="twitter:title" content="Chapter 3 Formateo de datos | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="importación-de-datos-y-carga-de-bibliotecas.html"/>
+<link rel="prev" href="importación-de-datos-y-carga-de-bibliotecas.html"/>
+<link rel="next" href="transformación-de-los-datos.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -175,27 +175,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introducción a RNA-Seq LCG-2021 | Proyecto Final</h1>
-<p class="author"><em>Elizabeth Márquez Gómez</em></p>
-<p class="date"><em>2021-03-01</em></p>
-</div>
-<div id="introducción" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introducción</h1>
-<p>El siguiente proyecto tiene por objetivo aplicar los conocimientos aprendidos en el <a href="https://github.com/lcolladotor/rnaseq_LCG-UNAM_2021">curso RNA-seq 2021</a>. Primer módulo del programa de bioinformática en la Licenciatura en Ciencias Genómicas, Universidad Nacional Autónoma de México.</p>
-<p>Por medio de una búsqueda exhaustiva en el paquete <a href="http://bioconductor.org/packages/release/bioc/html/recount3.html"><strong><em>recount3</em></strong></a> de <a href="http://bioconductor.org/"><strong><em>Bioconductor</em></strong></a>, se identificó el proyecto <a href="https://www.biorxiv.org/content/10.1101/467407v1.full"><strong><em>SRP162774 - Variability in the Analgesic Response to Ibuprofen Following Third Molar Extraction is Associated with Differences in Activation of the Cyclooxygenase Pathway</em></strong></a>, el cuál me pareció adecuado para el análisis de sus datos.</p>
-<div id="abstract-del-proyecto" class="section level3" number="1.0.1">
-<h3><span class="header-section-number">1.0.1</span> Abstract del proyecto</h3>
-<p><em>It has long been recognized that there is substantial inter-individual variability in the analgesic efficacy of non-steroidal anti-inflammatory drugs (NSAIDs), but the mechanisms underlying this variability are not well understood. In order to characterize the factors associated with heterogeneity in response to ibuprofen, we performed functional neuroimaging, pharmacokinetic/pharmacodynamic assessments, biochemical assays, and gene expression analysis in twenty-nine healthy subjects who underwent third molar extraction. Subjects were treated with rapid-acting ibuprofen (400 mg; N=19) or placebo (N=10) in a randomized, double-blind design. Compared to placebo, ibuprofen-treated subjects exhibited greater reduction in pain scores, alterations in CBF in brain regions associated with pain processing, and inhibition of ex vivo COX-1 and COX-2 activity and urinary prostaglandin metabolites (p&lt;0.05). Ibuprofen-treated subjects could be stratified into partial responders (N=9, required rescue medication) and complete responders (N=10, no rescue medication). This variability in analgesic efficacy was not associated with demographic/clinical characteristics, markers of systemic inflammation, or ibuprofen pharmacokinetics. Complete responders exhibited less suppression of urinary prostaglandin metabolites and greater induction of serum tumor necrosis factor-a and interleukin 8, compared to partial responders (p&lt;0.05). Partial responders exhibited more alterations in gene expression in peripheral blood mononuclear cells after surgery, with an enrichment in inflammatory pathways. These findings suggest that activation of the prostanoid biosynthetic pathway and regulation of the inflammatory response to surgery differs between partial and complete responders. Future studies are necessary to elucidate the molecular mechanisms underlying this variability and identify biomarkers that are predictive of ibuprofen response. Overall design: Human subjects were given Ibuprofen (400 mg; n=19) or placebo (n=10) following surgical extraction of their third molars. Subjects given Ibuprofen were retrospectively classified as partial responders (n=9) if they required rescue medication (hydrocodone 5 mg/acetaminophen 325 mg), or full responders (n=10) if they did not. All subjects in the placebo group received rescue medication. Blood was collected from subjects before surgery (baseline) and at two time points following surgery (post-surgery 1, post-surgery 2). Both post-surgery samples were collected after subjects were given drug/placebo. Peripheral blood mononuclear cell (PBMCs) were isolated from blood samples and their RNA content was assayed via RNA-seq. The following samples were dropped from normalization and final analyses due to low read depths: GSM3405457 (1004_post-surgery_1), GSM3405459 (1005_post-surgery_1), GSM3405462 (1007_baseline), GSM3405463 (1007_post-surgery_1), GSM3405464 (1008_baseline), GSM3405465 (1008_post-surgery_1), GSM3405466 (1008_post-surgery_2), GSM3405468 (1011_post-surgery_1), GSM3405469 (1011_post-surgery_2), GSM3405472 (1012_post-surgery_2), GSM3405491 (1020_baseline).</em></p>
-</div>
+<div id="formateo-de-datos" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Formateo de datos</h1>
+<p>Converitir a <em>factor</em> los valores a utilizar para el análisis estadístico.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="formateo-de-datos.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Convertir a factor las categorías que puedan ser dummy variables</span></span>
+<span id="cb11-2"><a href="formateo-de-datos.html#cb11-2" aria-hidden="true" tabindex="-1"></a>rse_gene_SRP162774<span class="sc">$</span>sra_attribute.drug_treatment <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">ifelse</span>(rse_gene_SRP162774<span class="sc">$</span>sra_attribute.drug_treatment <span class="sc">==</span> <span class="st">&#39;Placebo&#39;</span>, <span class="st">&#39;Placebo&#39;</span>, <span class="st">&#39;Ibuprofen&#39;</span>))</span>
+<span id="cb11-3"><a href="formateo-de-datos.html#cb11-3" aria-hidden="true" tabindex="-1"></a>rse_gene_SRP162774<span class="sc">$</span>sra_attribute.gender <span class="ot">&lt;-</span> <span class="fu">factor</span>(rse_gene_SRP162774<span class="sc">$</span>sra_attribute.gender)</span>
+<span id="cb11-4"><a href="formateo-de-datos.html#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="formateo-de-datos.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Resumen de las variables de interés</span></span>
+<span id="cb11-6"><a href="formateo-de-datos.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">as.data.frame</span>(<span class="fu">colData</span>(rse_gene_SRP162774)[</span>
+<span id="cb11-7"><a href="formateo-de-datos.html#cb11-7" aria-hidden="true" tabindex="-1"></a>    ,</span>
+<span id="cb11-8"><a href="formateo-de-datos.html#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">&quot;^sra_attribute.[cell_line|source_name|treatment]&quot;</span>, <span class="fu">colnames</span>(<span class="fu">colData</span>(rse_gene_SRP162774)))</span>
+<span id="cb11-9"><a href="formateo-de-datos.html#cb11-9" aria-hidden="true" tabindex="-1"></a>]))</span></code></pre></div>
+<pre><code>##  sra_attribute.cell_type sra_attribute.library_barcode
+##  Length:911              Length:911                   
+##  Class :character        Class :character             
+##  Mode  :character        Mode  :character             
+##  sra_attribute.response_group sra_attribute.source_name sra_attribute.subject
+##  Length:911                   Length:911                Length:911           
+##  Class :character             Class :character          Class :character     
+##  Mode  :character             Mode  :character          Mode  :character     
+##  sra_attribute.timepoint
+##  Length:911             
+##  Class :character       
+##  Mode  :character</code></pre>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="importación-de-datos-y-carga-de-bibliotecas.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="importación-de-datos-y-carga-de-bibliotecas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="transformación-de-los-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

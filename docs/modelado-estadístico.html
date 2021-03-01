@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Modelado estadístico | Introducción a RNA-Seq LCG-2021 | Proyecto Final</title>
+  <meta name="description" content="Chapter 6 Modelado estadístico | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Modelado estadístico | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Modelado estadístico | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  
+  
+  
+
+<meta name="author" content="Elizabeth Márquez Gómez" />
+
+
+<meta name="date" content="2021-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="visualización.html"/>
+<link rel="next" href="interpretación.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a RNA-Seq LCG-2021 | Proyecto Final</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#abstract-del-proyecto"><i class="fa fa-check"></i><b>1.0.1</b> Abstract del proyecto</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importación-de-datos-y-carga-de-bibliotecas.html"><a href="importación-de-datos-y-carga-de-bibliotecas.html"><i class="fa fa-check"></i><b>2</b> Importación de datos y carga de bibliotecas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="importación-de-datos-y-carga-de-bibliotecas.html"><a href="importación-de-datos-y-carga-de-bibliotecas.html#descarga-de-bibliotecas"><i class="fa fa-check"></i><b>2.1</b> Descarga de bibliotecas</a></li>
+<li class="chapter" data-level="2.2" data-path="importación-de-datos-y-carga-de-bibliotecas.html"><a href="importación-de-datos-y-carga-de-bibliotecas.html#importación-de-datos-y-evaluación-del-objeto"><i class="fa fa-check"></i><b>2.2</b> Importación de datos y evaluación del objeto</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="formateo-de-datos.html"><a href="formateo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Formateo de datos</a></li>
+<li class="chapter" data-level="4" data-path="transformación-de-los-datos.html"><a href="transformación-de-los-datos.html"><i class="fa fa-check"></i><b>4</b> Transformación de los datos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="transformación-de-los-datos.html"><a href="transformación-de-los-datos.html#filtrado"><i class="fa fa-check"></i><b>4.1</b> Filtrado</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="visualización.html"><a href="visualización.html"><i class="fa fa-check"></i><b>5</b> Visualización</a></li>
+<li class="chapter" data-level="6" data-path="modelado-estadístico.html"><a href="modelado-estadístico.html"><i class="fa fa-check"></i><b>6</b> Modelado estadístico</a></li>
+<li class="chapter" data-level="7" data-path="interpretación.html"><a href="interpretación.html"><i class="fa fa-check"></i><b>7</b> Interpretación</a></li>
+<li class="chapter" data-level="8" data-path="autoría-y-referencias.html"><a href="autoría-y-referencias.html"><i class="fa fa-check"></i><b>8</b> Autoría y referencias</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="autoría-y-referencias.html"><a href="autoría-y-referencias.html#autora"><i class="fa fa-check"></i><b>8.1</b> Autora</a></li>
+<li class="chapter" data-level="8.2" data-path="autoría-y-referencias.html"><a href="autoría-y-referencias.html#referencias"><i class="fa fa-check"></i><b>8.2</b> Referencias</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a RNA-Seq LCG-2021 | Proyecto Final</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="modelado-estadístico" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Modelado estadístico</h1>
+<p>Se usará <code>model.matrix()</code> para modelar las dos categorías para el análisis de expresión diferencial.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="modelado-estadístico.html#cb44-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> sra_attribute.drug_treatment <span class="sc">+</span> sra_attribute.gender <span class="sc">+</span> assigned_gene_prop,</span>
+<span id="cb44-2"><a href="modelado-estadístico.html#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">colData</span>(rse_gene_SRP162774)</span>
+<span id="cb44-3"><a href="modelado-estadístico.html#cb44-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb44-4"><a href="modelado-estadístico.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mod)</span></code></pre></div>
+<pre><code>## [1] &quot;(Intercept)&quot;                         &quot;sra_attribute.drug_treatmentPlacebo&quot;
+## [3] &quot;sra_attribute.gendermale&quot;            &quot;assigned_gene_prop&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="modelado-estadístico.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Verificar las posiciones de 1 y 0 respecto al estado de la categoría</span></span>
+<span id="cb46-2"><a href="modelado-estadístico.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rse_gene_SRP162774<span class="sc">$</span>sra_attribute.drug_treatment)</span></code></pre></div>
+<pre><code>## [1] Ibuprofen Ibuprofen Ibuprofen Ibuprofen Ibuprofen Ibuprofen
+## Levels: Ibuprofen Placebo</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="modelado-estadístico.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mod)</span></code></pre></div>
+<pre><code>##            (Intercept) sra_attribute.drug_treatmentPlacebo
+## SRR7911000           1                                   0
+## SRR7911001           1                                   0
+## SRR7911004           1                                   0
+## SRR7911005           1                                   0
+## SRR7911006           1                                   0
+## SRR7911007           1                                   0
+##            sra_attribute.gendermale assigned_gene_prop
+## SRR7911000                        0          0.1599425
+## SRR7911001                        0          0.1586717
+## SRR7911004                        1          0.1445792
+## SRR7911005                        1          0.1348229
+## SRR7911006                        1          0.1340993
+## SRR7911007                        1          0.1421941</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="modelado-estadístico.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rse_gene_SRP162774<span class="sc">$</span>sra_attribute.drug_treatment[<span class="dv">17</span>])</span></code></pre></div>
+<pre><code>## [1] Placebo
+## Levels: Ibuprofen Placebo</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="modelado-estadístico.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(mod[<span class="dv">17</span>])</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>La siguiente gráfica ilustra el promedio de varianza en la expresión diferencial de los datos. A partir de esto podemos observar el aunque se ajustan al promedio, la desviación se elonga aproximadamente 0.8 unidades. Es necesario acercar a los genes lejanos a la línea roja.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="modelado-estadístico.html#cb54-1" aria-hidden="true" tabindex="-1"></a>vGene <span class="ot">&lt;-</span> <span class="fu">voom</span>(dge, mod, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/voom-1.png" width="672" /></p>
+<p>A partir de lo anterior, es necesario generar un modelo de regresión lineal para ajustar la expresión de los datos.Obtención del p-value por medio de la función eBayes.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="modelado-estadístico.html#cb55-1" aria-hidden="true" tabindex="-1"></a>eb_results <span class="ot">&lt;-</span> <span class="fu">eBayes</span>(<span class="fu">lmFit</span>(vGene))</span>
+<span id="cb55-2"><a href="modelado-estadístico.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="modelado-estadístico.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Se configura el coef en 2, ya que ahí se encuentra la variable a evaluar (de referencia)</span></span>
+<span id="cb55-4"><a href="modelado-estadístico.html#cb55-4" aria-hidden="true" tabindex="-1"></a>de_results <span class="ot">&lt;-</span> <span class="fu">topTable</span>(</span>
+<span id="cb55-5"><a href="modelado-estadístico.html#cb55-5" aria-hidden="true" tabindex="-1"></a>    eb_results,</span>
+<span id="cb55-6"><a href="modelado-estadístico.html#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">coef =</span> <span class="dv">2</span>,</span>
+<span id="cb55-7"><a href="modelado-estadístico.html#cb55-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">number =</span> <span class="fu">nrow</span>(rse_gene_SRP162774),</span>
+<span id="cb55-8"><a href="modelado-estadístico.html#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sort.by =</span> <span class="st">&quot;none&quot;</span></span>
+<span id="cb55-9"><a href="modelado-estadístico.html#cb55-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-10"><a href="modelado-estadístico.html#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(de_results)</span></code></pre></div>
+<pre><code>## [1] 26644    16</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="modelado-estadístico.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(de_results)</span></code></pre></div>
+<pre><code>##                    source type score phase           gene_id
+## ENSG00000223972.5  HAVANA gene  1735    NA ENSG00000223972.5
+## ENSG00000278267.1 ENSEMBL gene    68    NA ENSG00000278267.1
+## ENSG00000227232.5  HAVANA gene  1351    NA ENSG00000227232.5
+## ENSG00000239945.1  HAVANA gene  1319    NA ENSG00000239945.1
+## ENSG00000238009.6  HAVANA gene  3726    NA ENSG00000238009.6
+## ENSG00000233750.3  HAVANA gene  3812    NA ENSG00000233750.3
+##                                            gene_type    gene_name level
+## ENSG00000223972.5 transcribed_unprocessed_pseudogene      DDX11L1     2
+## ENSG00000278267.1                              miRNA    MIR6859-1     3
+## ENSG00000227232.5             unprocessed_pseudogene       WASH7P     2
+## ENSG00000239945.1                            lincRNA RP11-34P13.8     2
+## ENSG00000238009.6                            lincRNA RP11-34P13.7     2
+## ENSG00000233750.3               processed_pseudogene       CICP27     1
+##                            havana_gene               tag       logFC   AveExpr
+## ENSG00000223972.5 OTTHUMG00000000961.2              &lt;NA&gt;  0.13701793 2.2731940
+## ENSG00000278267.1                 &lt;NA&gt;              &lt;NA&gt;  0.23074810 0.4182034
+## ENSG00000227232.5 OTTHUMG00000000958.1              &lt;NA&gt;  0.17576637 4.5382390
+## ENSG00000239945.1 OTTHUMG00000001097.2 overlapping_locus  0.08384809 0.3412740
+## ENSG00000238009.6 OTTHUMG00000001096.2 overlapping_locus -0.27515583 1.2725651
+## ENSG00000233750.3 OTTHUMG00000001257.3    pseudo_consens -0.22747778 1.4925440
+##                            t      P.Value    adj.P.Val         B
+## ENSG00000223972.5  1.9554141 5.088928e-02 1.158491e-01 -4.468697
+## ENSG00000278267.1  2.2368308 2.557794e-02 7.059237e-02 -3.616160
+## ENSG00000227232.5  4.9873251 7.542802e-07 1.559629e-05  5.314978
+## ENSG00000239945.1  0.7758086 4.380961e-01 5.542248e-01 -5.650885
+## ENSG00000238009.6 -2.9770138 3.000356e-03 1.437280e-02 -1.890726
+## ENSG00000233750.3 -2.5172333 1.202650e-02 4.066937e-02 -3.110197</code></pre>
+<p>Evaluar p-value menor a 0.05</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="modelado-estadístico.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Genes diferencialmente expresados entre ibuprofeno y placebo con FDR &lt; 5%</span></span>
+<span id="cb59-2"><a href="modelado-estadístico.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(de_results<span class="sc">$</span>adj.P.Val <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>## 
+## FALSE  TRUE 
+## 18165  8479</code></pre>
+<p>La siguiente gráfica explica el cambio de expresión entre placebo e ibupofeno. Los valores positivos indican una expresión más alta en placebo y valores negativos indican mayor expresión en ibuprofeno.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="modelado-estadístico.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Visualizar resultados estadísticos</span></span>
+<span id="cb61-2"><a href="modelado-estadístico.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMA</span>(eb_results, <span class="at">coef =</span> <span class="dv">2</span>)</span>
+<span id="cb61-3"><a href="modelado-estadístico.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.25</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb61-4"><a href="modelado-estadístico.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="sc">-</span><span class="fl">0.25</span>, <span class="at">col=</span><span class="st">&quot;red&quot;</span>, <span class="at">lwd=</span><span class="dv">3</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/viewStatisticResults-1.png" width="672" /></p>
+<p>El gráfico siguiente ilustra el <em>logfold change</em> en el eje x y el <em>p-value</em> en el eje y. Esto permite dilucidar los genes con mayor expresión y con mejor valor de <em>p-value</em>.</p>
+<p>Los 3 genes con mayor expresión se resaltan en azul.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="modelado-estadístico.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checar los genes en genecards</span></span>
+<span id="cb62-2"><a href="modelado-estadístico.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">volcanoplot</span>(eb_results, <span class="at">coef =</span> <span class="dv">2</span>, <span class="at">highlight =</span> <span class="dv">3</span>, <span class="at">names =</span> de_results<span class="sc">$</span>gene_name)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/mostExpressed-1.png" width="672" /></p>
+<p>El el siguiente heatmap podemos observar algunas clusterizaciones intermitentes para la clasificación de sexo. En la clasificación de tratamiento se observan un más grandes, lo que indica una buena relación en los datos. Respecto a los genes, sí es posible ver clusterización en relación a su nivel de expresión.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="modelado-estadístico.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Extracción de valores de genes de interés</span></span>
+<span id="cb63-2"><a href="modelado-estadístico.html#cb63-2" aria-hidden="true" tabindex="-1"></a>exprs_heatmap <span class="ot">&lt;-</span> vGene<span class="sc">$</span>E[<span class="fu">rank</span>(de_results<span class="sc">$</span>adj.P.Val) <span class="sc">&lt;=</span> <span class="dv">50</span>, ]</span>
+<span id="cb63-3"><a href="modelado-estadístico.html#cb63-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="modelado-estadístico.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Crear una tabla con información de las muestras</span></span>
+<span id="cb63-5"><a href="modelado-estadístico.html#cb63-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">colData</span>(rse_gene_SRP162774)[, <span class="fu">c</span>(<span class="st">&quot;sra_attribute.drug_treatment&quot;</span>, <span class="st">&quot;sra_attribute.gender&quot;</span>)])</span>
+<span id="cb63-6"><a href="modelado-estadístico.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;treatment&quot;</span>, <span class="st">&quot;gender&quot;</span>)</span>
+<span id="cb63-7"><a href="modelado-estadístico.html#cb63-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-8"><a href="modelado-estadístico.html#cb63-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-9"><a href="modelado-estadístico.html#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Cambiar ID a nombre de los genes</span></span>
+<span id="cb63-10"><a href="modelado-estadístico.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(exprs_heatmap)</span></code></pre></div>
+<pre><code>##  [1] &quot;ENSG00000225972.1&quot;  &quot;ENSG00000278791.1&quot;  &quot;ENSG00000134184.12&quot;
+##  [4] &quot;ENSG00000148737.16&quot; &quot;ENSG00000171798.17&quot; &quot;ENSG00000142089.15&quot;
+##  [7] &quot;ENSG00000013573.16&quot; &quot;ENSG00000123358.19&quot; &quot;ENSG00000258732.1&quot; 
+## [10] &quot;ENSG00000103202.12&quot; &quot;ENSG00000005379.15&quot; &quot;ENSG00000123146.19&quot;
+## [13] &quot;ENSG00000275395.4&quot;  &quot;ENSG00000254415.3&quot;  &quot;ENSG00000131042.14&quot;
+## [16] &quot;ENSG00000180398.11&quot; &quot;ENSG00000204792.2&quot;  &quot;ENSG00000233392.5&quot; 
+## [19] &quot;ENSG00000226321.5&quot;  &quot;ENSG00000157557.11&quot; &quot;ENSG00000128284.19&quot;
+## [22] &quot;ENSG00000189306.10&quot; &quot;ENSG00000100376.11&quot; &quot;ENSG00000075234.16&quot;
+## [25] &quot;ENSG00000175066.15&quot; &quot;ENSG00000109321.10&quot; &quot;ENSG00000197822.10&quot;
+## [28] &quot;ENSG00000145990.10&quot; &quot;ENSG00000137393.9&quot;  &quot;ENSG00000204525.16&quot;
+## [31] &quot;ENSG00000223534.1&quot;  &quot;ENSG00000179344.16&quot; &quot;ENSG00000051620.10&quot;
+## [34] &quot;ENSG00000260097.2&quot;  &quot;ENSG00000170667.14&quot; &quot;ENSG00000272949.1&quot; 
+## [37] &quot;ENSG00000205238.9&quot;  &quot;ENSG00000168255.19&quot; &quot;ENSG00000270249.1&quot; 
+## [40] &quot;ENSG00000267368.1&quot;  &quot;ENSG00000205236.6&quot;  &quot;ENSG00000173678.14&quot;
+## [43] &quot;ENSG00000228049.7&quot;  &quot;ENSG00000267645.5&quot;  &quot;ENSG00000211747.3&quot; 
+## [46] &quot;ENSG00000211753.4&quot;  &quot;ENSG00000175445.14&quot; &quot;ENSG00000170873.18&quot;
+## [49] &quot;ENSG00000119138.4&quot;  &quot;ENSG00000157514.16&quot;</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="modelado-estadístico.html#cb65-1" aria-hidden="true" tabindex="-1"></a>findPositions <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">rowRanges</span>(rse_gene_SRP162774)<span class="sc">$</span>gene_id <span class="sc">%in%</span> <span class="fu">rownames</span>(exprs_heatmap))</span>
+<span id="cb65-2"><a href="modelado-estadístico.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(exprs_heatmap) <span class="ot">&lt;-</span> <span class="fu">rowRanges</span>(rse_gene_SRP162774)<span class="sc">$</span>gene_name[findPositions]</span>
+<span id="cb65-3"><a href="modelado-estadístico.html#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="modelado-estadístico.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(</span>
+<span id="cb65-5"><a href="modelado-estadístico.html#cb65-5" aria-hidden="true" tabindex="-1"></a>    exprs_heatmap,</span>
+<span id="cb65-6"><a href="modelado-estadístico.html#cb65-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb65-7"><a href="modelado-estadístico.html#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cluster_cols =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb65-8"><a href="modelado-estadístico.html#cb65-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_rownames =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb65-9"><a href="modelado-estadístico.html#cb65-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">show_colnames =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb65-10"><a href="modelado-estadístico.html#cb65-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">annotation_col =</span> df,</span>
+<span id="cb65-11"><a href="modelado-estadístico.html#cb65-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fontsize_row =</span> <span class="dv">4</span></span>
+<span id="cb65-12"><a href="modelado-estadístico.html#cb65-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="modelado-estadístico.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Para colores</span></span>
+<span id="cb66-2"><a href="modelado-estadístico.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##            treatment gender
+## SRR7911000 Ibuprofen female
+## SRR7911001 Ibuprofen female
+## SRR7911004 Ibuprofen   male
+## SRR7911005 Ibuprofen   male
+## SRR7911006 Ibuprofen   male
+## SRR7911007 Ibuprofen   male</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="modelado-estadístico.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Conviertiendo los grupos de tratamiento a colores</span></span>
+<span id="cb68-2"><a href="modelado-estadístico.html#cb68-2" aria-hidden="true" tabindex="-1"></a>col.drug <span class="ot">&lt;-</span> df<span class="sc">$</span>treatment</span>
+<span id="cb68-3"><a href="modelado-estadístico.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(col.drug) <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="fu">nlevels</span>(col.drug), <span class="st">&quot;Set1&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in brewer.pal(nlevels(col.drug), &quot;Set1&quot;): minimal value for n is 3, returning requested palette with 3 different levels</code></pre>
+<p>A pesar de la limpieza realizada a los datos, no es posible observar una clusterización referente al tipo de tratamiento en los niveles de expresión. Lo anterior, puede atribuirse a una baja calidad de la biblioteca de datos o a un nivel de expresión realmente bajo en ambas condiciones.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="modelado-estadístico.html#cb70-1" aria-hidden="true" tabindex="-1"></a>col.drug <span class="ot">&lt;-</span> <span class="fu">as.character</span>(col.drug)</span>
+<span id="cb70-2"><a href="modelado-estadístico.html#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="modelado-estadístico.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="do">## MDS por grupos tratamiento</span></span>
+<span id="cb70-4"><a href="modelado-estadístico.html#cb70-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMDS</span>(vGene<span class="sc">$</span>E, <span class="at">labels =</span> df<span class="sc">$</span>treatment, <span class="at">col =</span> col.drug)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Los siguientes gráficos sugieren una alta relación entre la respuesta a ibuprofeno ligada a los hombres, y la respuesta a placebo ligada a las mujeres. Sin embargo la clusterización no es tan clara para afirmar esta hipótesis.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="modelado-estadístico.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Conviertiendo los grupos de tratamiento a colores</span></span>
+<span id="cb71-2"><a href="modelado-estadístico.html#cb71-2" aria-hidden="true" tabindex="-1"></a>col.sex <span class="ot">&lt;-</span> df<span class="sc">$</span>gender</span>
+<span id="cb71-3"><a href="modelado-estadístico.html#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(col.sex) <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="fu">nlevels</span>(col.sex), <span class="st">&quot;Dark2&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in brewer.pal(nlevels(col.sex), &quot;Dark2&quot;): minimal value for n is 3, returning requested palette with 3 different levels</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="modelado-estadístico.html#cb73-1" aria-hidden="true" tabindex="-1"></a>col.sex <span class="ot">&lt;-</span> <span class="fu">as.character</span>(col.sex)</span>
+<span id="cb73-2"><a href="modelado-estadístico.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="do">## MDS por grupos tratamiento</span></span>
+<span id="cb73-3"><a href="modelado-estadístico.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMDS</span>(vGene<span class="sc">$</span>E, <span class="at">labels =</span> df<span class="sc">$</span>gender, <span class="at">col =</span> col.sex)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="modelado-estadístico.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df, <span class="at">main =</span> <span class="st">&#39;Relación entre sexo y tipo de tratamiento&#39;</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;darkseagreen1&#39;</span>, <span class="st">&#39;lightblue&#39;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualización.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interpretación.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Elizabeth-mqz-gmz/RNAseq-Project-2021/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/Elizabeth-mqz-gmz/RNAseq-Project-2021/blob/master/index.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

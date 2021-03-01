@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Importación de datos y carga de bibliotecas | Introducción a RNA-Seq LCG-2021 | Proyecto Final</title>
+  <meta name="description" content="Chapter 2 Importación de datos y carga de bibliotecas | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Importación de datos y carga de bibliotecas | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Importación de datos y carga de bibliotecas | Introducción a RNA-Seq LCG-2021 | Proyecto Final" />
+  
+  
+  
+
+<meta name="author" content="Elizabeth Márquez Gómez" />
+
+
+<meta name="date" content="2021-03-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="formateo-de-datos.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introducción a RNA-Seq LCG-2021 | Proyecto Final</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="1.0.1" data-path="index.html"><a href="index.html#abstract-del-proyecto"><i class="fa fa-check"></i><b>1.0.1</b> Abstract del proyecto</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importación-de-datos-y-carga-de-bibliotecas.html"><a href="importación-de-datos-y-carga-de-bibliotecas.html"><i class="fa fa-check"></i><b>2</b> Importación de datos y carga de bibliotecas</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="importación-de-datos-y-carga-de-bibliotecas.html"><a href="importación-de-datos-y-carga-de-bibliotecas.html#descarga-de-bibliotecas"><i class="fa fa-check"></i><b>2.1</b> Descarga de bibliotecas</a></li>
+<li class="chapter" data-level="2.2" data-path="importación-de-datos-y-carga-de-bibliotecas.html"><a href="importación-de-datos-y-carga-de-bibliotecas.html#importación-de-datos-y-evaluación-del-objeto"><i class="fa fa-check"></i><b>2.2</b> Importación de datos y evaluación del objeto</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="formateo-de-datos.html"><a href="formateo-de-datos.html"><i class="fa fa-check"></i><b>3</b> Formateo de datos</a></li>
+<li class="chapter" data-level="4" data-path="transformación-de-los-datos.html"><a href="transformación-de-los-datos.html"><i class="fa fa-check"></i><b>4</b> Transformación de los datos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="transformación-de-los-datos.html"><a href="transformación-de-los-datos.html#filtrado"><i class="fa fa-check"></i><b>4.1</b> Filtrado</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="visualización.html"><a href="visualización.html"><i class="fa fa-check"></i><b>5</b> Visualización</a></li>
+<li class="chapter" data-level="6" data-path="modelado-estadístico.html"><a href="modelado-estadístico.html"><i class="fa fa-check"></i><b>6</b> Modelado estadístico</a></li>
+<li class="chapter" data-level="7" data-path="interpretación.html"><a href="interpretación.html"><i class="fa fa-check"></i><b>7</b> Interpretación</a></li>
+<li class="chapter" data-level="8" data-path="autoría-y-referencias.html"><a href="autoría-y-referencias.html"><i class="fa fa-check"></i><b>8</b> Autoría y referencias</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="autoría-y-referencias.html"><a href="autoría-y-referencias.html#autora"><i class="fa fa-check"></i><b>8.1</b> Autora</a></li>
+<li class="chapter" data-level="8.2" data-path="autoría-y-referencias.html"><a href="autoría-y-referencias.html#referencias"><i class="fa fa-check"></i><b>8.2</b> Referencias</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a RNA-Seq LCG-2021 | Proyecto Final</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="importación-de-datos-y-carga-de-bibliotecas" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Importación de datos y carga de bibliotecas</h1>
+<div id="descarga-de-bibliotecas" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Descarga de bibliotecas</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Cargar el paquete de recount3</span></span>
+<span id="cb1-2"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;recount3&quot;</span>)</span>
+<span id="cb1-3"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;edgeR&quot;</span>) <span class="co"># BiocManager::install(&quot;edgeR&quot;, update = FALSE)</span></span>
+<span id="cb1-4"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb1-5"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;limma&quot;</span>)</span>
+<span id="cb1-6"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;pheatmap&quot;</span>)</span>
+<span id="cb1-7"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;RColorBrewer&quot;</span>)</span>
+<span id="cb1-8"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Obtener todos los proyectos disponibles de recount3</span></span>
+<span id="cb1-10"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb1-10" aria-hidden="true" tabindex="-1"></a>human_projects <span class="ot">&lt;-</span> <span class="fu">available_projects</span>()</span></code></pre></div>
+</div>
+<div id="importación-de-datos-y-evaluación-del-objeto" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Importación de datos y evaluación del objeto</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Descargar el proyecto SRP162774 - Variability in the Analgesic Response to Ibuprofen Following Third Molar Extraction is Associated with Differences in Activation of the Cyclooxygenase Pathway</span></span>
+<span id="cb2-2"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb2-2" aria-hidden="true" tabindex="-1"></a>proj_info <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb2-3"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb2-3" aria-hidden="true" tabindex="-1"></a>    human_projects,</span>
+<span id="cb2-4"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb2-4" aria-hidden="true" tabindex="-1"></a>    project <span class="sc">==</span> <span class="st">&quot;SRP162774&quot;</span> <span class="sc">&amp;</span> project_type <span class="sc">==</span> <span class="st">&quot;data_sources&quot;</span></span>
+<span id="cb2-5"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Crea un objeto de clase RangedSummarizedExperiment (RSE) con la información a nivel de genes</span></span>
+<span id="cb2-8"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb2-8" aria-hidden="true" tabindex="-1"></a>rse_gene_SRP162774 <span class="ot">&lt;-</span> <span class="fu">create_rse</span>(proj_info)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb3-1" aria-hidden="true" tabindex="-1"></a>rse_gene_SRP162774</span></code></pre></div>
+<pre><code>## class: RangedSummarizedExperiment 
+## dim: 63856 911 
+## metadata(8): time_created recount3_version ... annotation recount3_url
+## assays(1): raw_counts
+## rownames(63856): ENSG00000278704.1 ENSG00000277400.1 ...
+##   ENSG00000182484.15_PAR_Y ENSG00000227159.8_PAR_Y
+## rowData names(10): source type ... havana_gene tag
+## colnames(911): SRR7911000 SRR7911001 ... SRR7910995 SRR7910996
+## colData names(175): rail_id external_id ...
+##   recount_pred.curated.cell_line BigWigURL</code></pre>
+<p>El objeto es analizado con el fin de conocer las categoría que contiene, y evaluar la homogeneidad de las mismas. Si existe algún problema tendrá que ser arreglado por medio de la curación o limpieza de los datos.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Conversión de las cuentas por nucleotido a cuentas por lectura</span></span>
+<span id="cb5-2"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">assay</span>(rse_gene_SRP162774, <span class="st">&quot;counts&quot;</span>) <span class="ot">&lt;-</span> <span class="fu">compute_read_counts</span>(rse_gene_SRP162774)</span>
+<span id="cb5-3"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">##Obtener un resumen más completo sobre el objeto</span></span>
+<span id="cb5-5"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-5" aria-hidden="true" tabindex="-1"></a>rse_gene_SRP162774 <span class="ot">&lt;-</span> <span class="fu">expand_sra_attributes</span>(rse_gene_SRP162774)</span>
+<span id="cb5-6"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colData</span>(rse_gene_SRP162774)[</span>
+<span id="cb5-8"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-8" aria-hidden="true" tabindex="-1"></a>    ,</span>
+<span id="cb5-9"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">grepl</span>(<span class="st">&quot;^sra_attribute&quot;</span>, <span class="fu">colnames</span>(<span class="fu">colData</span>(rse_gene_SRP162774)))</span>
+<span id="cb5-10"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb5-10" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<pre><code>## DataFrame with 911 rows and 8 columns
+##            sra_attribute.cell_type sra_attribute.drug_treatment
+##                        &lt;character&gt;                  &lt;character&gt;
+## SRR7911000  peripheral blood mon..             ibuprofen sodium
+## SRR7911001  peripheral blood mon..             ibuprofen sodium
+## SRR7911004  peripheral blood mon..             ibuprofen sodium
+## SRR7911005  peripheral blood mon..             ibuprofen sodium
+## SRR7911006  peripheral blood mon..             ibuprofen sodium
+## ...                            ...                          ...
+## SRR7910943  peripheral blood mon..                      Placebo
+## SRR7910948  peripheral blood mon..                      Placebo
+## SRR7910954  peripheral blood mon..                      Placebo
+## SRR7910995  peripheral blood mon..             ibuprofen sodium
+## SRR7910996  peripheral blood mon..             ibuprofen sodium
+##            sra_attribute.gender sra_attribute.library_barcode
+##                     &lt;character&gt;                   &lt;character&gt;
+## SRR7911000               female             TCTCGCGC-GGCTCTGA
+## SRR7911001               female             TCTCGCGC-GGCTCTGA
+## SRR7911004                 male             AGCGATAG-GGCTCTGA
+## SRR7911005                 male             AGCGATAG-GGCTCTGA
+## SRR7911006                 male             AGCGATAG-GGCTCTGA
+## ...                         ...                           ...
+## SRR7910943               female             CTGAAGCT-GGCTCTGA
+## SRR7910948               female             TAATGCGC-GGCTCTGA
+## SRR7910954               female             TAATGCGC-GGCTCTGA
+## SRR7910995               female             TCTCGCGC-GGCTCTGA
+## SRR7910996               female             TCTCGCGC-GGCTCTGA
+##            sra_attribute.response_group sra_attribute.source_name
+##                             &lt;character&gt;               &lt;character&gt;
+## SRR7911000            Partial responder    peripheral blood mon..
+## SRR7911001            Partial responder    peripheral blood mon..
+## SRR7911004               Full responder    peripheral blood mon..
+## SRR7911005               Full responder    peripheral blood mon..
+## SRR7911006               Full responder    peripheral blood mon..
+## ...                                 ...                       ...
+## SRR7910943                      Placebo    peripheral blood mon..
+## SRR7910948                      Placebo    peripheral blood mon..
+## SRR7910954                      Placebo    peripheral blood mon..
+## SRR7910995            Partial responder    peripheral blood mon..
+## SRR7910996            Partial responder    peripheral blood mon..
+##            sra_attribute.subject sra_attribute.timepoint
+##                      &lt;character&gt;             &lt;character&gt;
+## SRR7911000                  1021          post-surgery 2
+## SRR7911001                  1021          post-surgery 2
+## SRR7911004                  1022                baseline
+## SRR7911005                  1022                baseline
+## SRR7911006                  1022                baseline
+## ...                          ...                     ...
+## SRR7910943                  1020          post-surgery 1
+## SRR7910948                  1020          post-surgery 2
+## SRR7910954                  1020          post-surgery 2
+## SRR7910995                  1021          post-surgery 2
+## SRR7910996                  1021          post-surgery 2</code></pre>
+<p>Al observar una buena integridad de los datos en el paso anterior, no será necesario hacer una limpieza de ellos.
+Para el análisis de expresión diferencial, se utilizarán dos atributos del objeto <strong><em>drug_treatment</em></strong> y <strong><em>gender</em></strong>, ambos pueden ser manejados como <em>dummy variables</em>.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Verificar los valores de las características a evaluar.</span></span>
+<span id="cb7-2"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rse_gene_SRP162774<span class="sc">$</span>sra_attribute.drug_treatment)</span></code></pre></div>
+<pre><code>## 
+## ibuprofen sodium          Placebo 
+##              577              334</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="importación-de-datos-y-carga-de-bibliotecas.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(rse_gene_SRP162774<span class="sc">$</span>sra_attribute.gender)</span></code></pre></div>
+<pre><code>## 
+## female   male 
+##    416    495</code></pre>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="formateo-de-datos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Elizabeth-mqz-gmz/RNAseq-Project-2021/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/Elizabeth-mqz-gmz/RNAseq-Project-2021/blob/master/index.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
